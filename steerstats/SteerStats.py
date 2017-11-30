@@ -269,7 +269,7 @@ class SteerStats():
                 
             # update the optimization parameter values for this execution
             aiConfigParams={}
-            if (aiParams != None):
+            if (aiParams is not None):
                 assert len(aiParams) == len(self._ai_param_names), ("the param names for " + str(aiParams) + 
                             " do not match for " + str(self._ai_param_names) + "; " + str(len(aiParams)) + 
                             " != " + str(len(self._ai_param_names ))) 

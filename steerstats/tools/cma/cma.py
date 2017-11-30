@@ -610,7 +610,7 @@ class BoundPenalty(object):
         If `bounds` is not `None`, the values in `bounds` are used, see `__init__`"""
         if x in (None, (), []):
             return x
-        if gp.bounds in (None, [None, None], (None, None)):
+        if gp.bounds is None or gp.bounds is [None, None] or gp.bounds is (None, None):
             return 0.0 if np.isscalar(x[0]) else [0.0] * len(x) # no penalty
         
         x_is_single_vector = np.isscalar(x[0])
@@ -930,7 +930,7 @@ class GenoPheno(object):
         
         """
         bounds = bounds if bounds is not None else self.bounds
-        if bounds in (None, [None, None]):
+        if bounds is None or bounds is [None, None]:
             return y if not copy_always else array(y, copy=True)
         if bounds[0] is not None:
             if len(bounds[0]) not in (1, len(y)):
@@ -3747,7 +3747,8 @@ class CMADataLogger(BaseDataLogger):  # might become a dict at some point
         except (IOError, OSError):
             print('could not open file ' + fn)
         finally:
-            f.close()
+            if 'f' in locals():
+                f.close()
         fn = self.name_prefix + 'stddev.dat'
         try: 
             f = open(fn, 'w')
@@ -3759,7 +3760,8 @@ class CMADataLogger(BaseDataLogger):  # might become a dict at some point
         except (IOError, OSError):
             print('could not open file ' + fn)
         finally:
-            f.close()
+            if 'f' in locals():
+                f.close()
 
         fn = self.name_prefix + 'xmean.dat'
         try: 

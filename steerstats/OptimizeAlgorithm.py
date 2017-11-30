@@ -426,7 +426,7 @@ def multiOptimizeWithNSGA2(options, availableProcesses, ai_bounds, steerStats,
     
     
 def OptimizeWithCMA():
-  
+    import os
     # clear; clear; time python SteerStats.py --ai pprAI --checkAgentInteraction --numScenarios 5000 --benchmark compositeGraph -c --scenarioSetInitId=0 --scenarioDIR data/scenarios/representativeSet  --statsOnly -p 8
     
     options = getOptions()
@@ -521,6 +521,8 @@ def OptimizeWithCMA():
     
     
     print "Control result: " + str(op._control_result)
+    if not os.path.exists(cmaFilePrefix):
+        os.makedirs(cmaFilePrefix)
     opt_log = open(cmaFilePrefix+"SteerStatsOptResult.txt", "w")
     writeCMAResults(opt_log, result)
     opt_log.close()
