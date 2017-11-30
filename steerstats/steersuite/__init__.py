@@ -13,8 +13,9 @@ import signal
 _system = platform.system()
 # the GLOBAL acess is required so that dynamically loaded libraries can access steerlib functions
 libraryDirectory = '../build/bin/'
+macLibraryDirectory = '../build/lib/'
 if _system == 'Darwin': # OSX
-    libraryLocation=libraryDirectory+'steersimlib.dylib'
+    libraryLocation=macLibraryDirectory+'libsteersimlib.dylib'
     lib = ct.cdll.LoadLibrary(libraryLocation)
 elif _system == 'Windows':
     libraryLocation=libraryDirectory+'steersimlib.dll'

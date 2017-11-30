@@ -2,10 +2,11 @@ import steersuite
 import platform
 import ctypes as ct
 libraryDirectory = '../build/bin/'
+macLibraryDirectory = '../build/lib/'
 _system = platform.system()
 print '========================' + _system
 if _system == 'Darwin':
-	lib = ct.cdll.LoadLibrary(libraryDirectory+'libutil.dylib')
+	lib = ct.cdll.LoadLibrary(macLibraryDirectory+'libutil.dylib')
 elif _system == 'Windows':
     lib = ct.cdll.LoadLibrary(libraryDirectory+'util.dll')
 else: # Linux

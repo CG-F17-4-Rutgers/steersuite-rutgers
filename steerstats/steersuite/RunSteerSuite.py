@@ -4,7 +4,9 @@ import os, re
 def RunSteerSuite(params, config_file, commandlineFlag):
     import platform
     _system = platform.system()
-    if _system == "Darwin" or _system == "Linux" or _system == 'Windows':
+    if _system == "Darwin":
+        pathToSteerSuite="../build/bin/steersim"
+    elif _system == "Linux" or _system == 'Windows':
         pathToSteerSuite="../build/bin/steersim.exe"
     else:
         pathToSteerSuite="../build/win32/Release/steersim.exe"
